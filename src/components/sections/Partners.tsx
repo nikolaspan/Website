@@ -2,6 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup } from "@/components/ui/Reveal";
+import { PartnerLogo } from "@/components/ui/PartnerLogo";
 import { HospitalityMap } from "@/components/sections/HospitalityMap";
 import { partnerGroups, partnerStats } from "@/data/content";
 import { site } from "@/data/site";
@@ -75,10 +76,17 @@ export function Partners() {
                       )}
                     >
                       <span className="p-corner absolute right-3.5 top-3.5 h-1.5 w-1.5 rounded-full bg-aqua opacity-50 shadow-[0_0_8px_#26BDD8]" />
-                      <div className="p-name mb-3 font-display text-lg font-extralight uppercase tracking-[0.18em] text-sea-950">
-                        {partner.name}
+                      <div>
+                        <PartnerLogo
+                          name={partner.name}
+                          logo={partner.logo}
+                          size={46}
+                        />
+                        <div className="p-name mt-4 font-display text-lg font-extralight uppercase tracking-[0.18em] text-sea-950">
+                          {partner.name}
+                        </div>
                       </div>
-                      <div className="p-role text-[11px] font-medium tracking-[0.06em] text-sea-950/60">
+                      <div className="p-role mt-3 text-[11px] font-medium tracking-[0.06em] text-sea-950/60">
                         {partner.role}
                       </div>
                     </div>

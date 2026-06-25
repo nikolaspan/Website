@@ -62,35 +62,89 @@ export const platformRequests: JourneyRow[] = [
   { route: "Avant Mar → Naxos · 16:45", meta: "2 guests", status: "Confirmed" },
 ];
 
-export type Partner = { name: string; role: string };
+export type Partner = {
+  name: string;
+  role: string;
+  /** Logo image under /public, e.g. "/brand/partners/amanzoe.png".
+   *  Missing/failed images fall back to brand-styled initials automatically. */
+  logo?: string;
+};
 export type PartnerGroup = { category: string; partners: Partner[] };
 
 export const partnerGroups: PartnerGroup[] = [
   {
     category: "Hospitality",
     partners: [
-      { name: "AMANZOE", role: "Luxury resort · Peloponnese" },
-      { name: "ONE & ONLY", role: "Luxury resort · Athens Riviera" },
-      { name: "AVANT MAR", role: "Boutique resort · Paros" },
-      { name: "ON RESIDENCES", role: "Hospitality group" },
+      {
+        name: "AMANZOE",
+        role: "Luxury resort · Peloponnese",
+        logo: "/brand/partners/amanzoe.png",
+      },
+      {
+        name: "ONE & ONLY",
+        role: "Luxury resort · Athens Riviera",
+        logo: "/brand/partners/one-and-only.png",
+      },
+      {
+        name: "AVANT MAR",
+        role: "Boutique resort · Paros",
+        logo: "/brand/partners/avant-mar.png",
+      },
+      {
+        name: "ON RESIDENCES",
+        role: "Hospitality group",
+        logo: "/brand/partners/on-residences.png",
+      },
     ],
   },
   {
     category: "Industry & Innovation",
     partners: [
-      { name: "SETE", role: "Greek tourism confederation" },
-      { name: "HCH", role: "Hellenic chamber of hotels" },
-      { name: "ELEVATE GR", role: "National innovation initiative" },
-      { name: "CAPSULET", role: "Travel & hospitality accelerator" },
+      {
+        name: "SETE",
+        role: "Greek tourism confederation",
+        logo: "/brand/partners/sete.png",
+      },
+      {
+        name: "HCH",
+        role: "Hellenic chamber of hotels",
+        logo: "/brand/partners/hch.png",
+      },
+      {
+        name: "ELEVATE GR",
+        role: "National innovation initiative",
+        logo: "/brand/partners/elevate-gr.png",
+      },
+      {
+        name: "CAPSULET",
+        role: "Travel & hospitality accelerator",
+        logo: "/brand/partners/capsulet.png",
+      },
     ],
   },
   {
     category: "Community & Sea",
     partners: [
-      { name: "HELMEPA", role: "Marine environment protection" },
-      { name: "AEGEAN CH.", role: "Boat operator network" },
-      { name: "BLUE LINE", role: "Coastal logistics partner" },
-      { name: "MARE CO.", role: "Sea experience operator" },
+      {
+        name: "HELMEPA",
+        role: "Marine environment protection",
+        logo: "/brand/partners/helmepa.png",
+      },
+      {
+        name: "AEGEAN CH.",
+        role: "Boat operator network",
+        logo: "/brand/partners/aegean-ch.png",
+      },
+      {
+        name: "BLUE LINE",
+        role: "Coastal logistics partner",
+        logo: "/brand/partners/blue-line.png",
+      },
+      {
+        name: "MARE CO.",
+        role: "Sea experience operator",
+        logo: "/brand/partners/mare-co.png",
+      },
     ],
   },
 ];
