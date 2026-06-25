@@ -34,7 +34,16 @@ export function Navbar() {
           >
             <BrandLogo size={30} className="rounded-md" />
             <span className="font-display text-sm font-extralight uppercase tracking-[0.22em]">
-              {site.name}
+              {site.name.split("-").map((part, i, arr) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 && (
+                    <span className="text-[3em] leading-none align-middle">
+                      -
+                    </span>
+                  )}
+                </span>
+              ))}
             </span>
           </a>
 

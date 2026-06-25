@@ -72,13 +72,6 @@ export function Hero() {
                 </Button>
               </div>
             </Reveal>
-
-            <Reveal delay={280}>
-              <p className="text-xs tracking-[0.02em] text-coastal/50">
-                Trusted by hotels, DMCs, travel pros, boat partners, marinas,
-                and coastal destinations.
-              </p>
-            </Reveal>
           </div>
 
           <Reveal delay={160}>

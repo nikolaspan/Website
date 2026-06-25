@@ -2,7 +2,7 @@
 
 export const site = {
   name: "SAIL-E",
-  tagline: "Sea mobility, simplified.",
+  tagline: "On demand sea transportation.",
   url: "https://www.sail-e.com",
   email: "info@sail-e.com",
   social: "@saile_app",
