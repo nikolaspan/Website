@@ -41,7 +41,7 @@ export const platformTiles: { icon: IconName; title: string; body: string }[] = 
   },
   {
     icon: "users",
-    title: "For DMCs & Travel Pros",
+    title: "For DMCs",
     body: "Curated sea experiences with trusted operators, on a single request line.",
   },
   {
@@ -78,22 +78,37 @@ export const partnerGroups: PartnerGroup[] = [
       {
         name: "AMANZOE",
         role: "Luxury resort · Peloponnese",
-        logo: "/brand/partners/amanzoe.png",
+        logo: "/brand/partners/images_500x500_enhanced.png",
       },
       {
         name: "ONE & ONLY",
         role: "Luxury resort · Athens Riviera",
-        logo: "/brand/partners/one-and-only.png",
+        logo: "/brand/partners/one_and_only_500x500_enhanced.png",
       },
       {
         name: "AVANT MAR",
         role: "Boutique resort · Paros",
-        logo: "/brand/partners/avant-mar.png",
+        logo: "/brand/partners/avant_mar_500x500_enhanced.png",
       },
       {
         name: "ON RESIDENCES",
         role: "Hospitality group",
-        logo: "/brand/partners/on-residences.png",
+        logo: "/brand/partners/on_residence_500x500_enhanced.png",
+      },
+      {
+        name: "91 ATHENS RIVIERA",
+        role: "Seafront residences · Athens Riviera",
+        logo: "/brand/partners/91_1_500x500_enhanced.png",
+      },
+      {
+        name: "SILVERSANDS",
+        role: "Hotels & resorts",
+        logo: "/brand/partners/silversands_500x500_enhanced.png",
+      },
+      {
+        name: "GRIVALIA HOSPITALITY",
+        role: "Hospitality investment group",
+        logo: "/brand/partners/grivalia_hospitality_logo_e1665468820635_500x500_enhanced.png",
       },
     ],
   },
@@ -101,24 +116,24 @@ export const partnerGroups: PartnerGroup[] = [
     category: "Industry & Innovation",
     partners: [
       {
-        name: "SETE",
-        role: "Greek tourism confederation",
-        logo: "/brand/partners/sete.png",
-      },
-      {
-        name: "HCH",
-        role: "Hellenic chamber of hotels",
-        logo: "/brand/partners/hch.png",
-      },
-      {
         name: "ELEVATE GR",
         role: "National innovation initiative",
-        logo: "/brand/partners/elevate-gr.png",
+        logo: "/brand/partners/elevate_500x500_enhanced.png",
       },
       {
         name: "CAPSULET",
         role: "Travel & hospitality accelerator",
-        logo: "/brand/partners/capsulet.png",
+        logo: "/brand/partners/capsulet_logo_500x500_enhanced.png",
+      },
+      {
+        name: "STARTUS INSIGHTS",
+        role: "Innovation intelligence platform",
+        logo: "/brand/partners/start_us_500x500_enhanced.png",
+      },
+      {
+        name: "GRIVALIA MANAGEMENT",
+        role: "Real estate & asset management",
+        logo: "/brand/partners/management_grivalia_500x500_enhanced.png",
       },
     ],
   },
@@ -128,29 +143,24 @@ export const partnerGroups: PartnerGroup[] = [
       {
         name: "HELMEPA",
         role: "Marine environment protection",
-        logo: "/brand/partners/helmepa.png",
+        logo: "/brand/partners/helmepa_500x500_enhanced.png",
       },
       {
-        name: "AEGEAN CH.",
-        role: "Boat operator network",
-        logo: "/brand/partners/aegean-ch.png",
+        name: "BLUE STAR",
+        role: "Aegean ferry network",
+        logo: "/brand/partners/blue_star_500x500_enhanced.png",
       },
       {
-        name: "BLUE LINE",
-        role: "Coastal logistics partner",
-        logo: "/brand/partners/blue-line.png",
-      },
-      {
-        name: "MARE CO.",
-        role: "Sea experience operator",
-        logo: "/brand/partners/mare-co.png",
+        name: "YNANP",
+        role: "Ministry of Maritime Affairs",
+        logo: "/brand/partners/ynanp_500x500_enhanced.png",
       },
     ],
   },
 ];
 
 export const partnerStats = [
-  { value: "12+", label: "Trusted partners" },
+  { value: "14", label: "Trusted partners" },
   { value: "3", label: "Sectors" },
   { value: "1", label: "Mediterranean network" },
 ];

@@ -58,9 +58,9 @@ export function Hero() {
 
             <Reveal delay={120}>
               <p className="mb-9 max-w-xl text-[clamp(1rem,1.25vw,1.2rem)] leading-relaxed tracking-[0.015em] text-coastal/80">
-                SAIL-E helps hotels, DMCs, travel pros, boat partners, and
-                destinations book and manage trusted sea mobility with clarity,
-                speed, and care. One platform for every sea journey.
+                SAIL-E helps hotels, DMCs, boat partners, and destinations book
+                and manage trusted sea mobility with clarity, speed, and care.
+                One platform for every sea journey.
               </p>
             </Reveal>
 

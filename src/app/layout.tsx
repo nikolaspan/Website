@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.sail-e.com"),
   title: "SAIL-E · Sea mobility, simplified.",
   description:
-    "SAIL-E helps hotels, DMCs, travel pros, boat partners, and destinations book and manage trusted sea mobility with clarity, speed, and care. One platform for every sea journey.",
+    "SAIL-E helps hotels, DMCs, boat partners, and destinations book and manage trusted sea mobility with clarity, speed, and care. One platform for every sea journey.",
   keywords: [
     "sea mobility",
     "boat transfers",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SAIL-E · Sea mobility, simplified.",
     description:
-      "One platform for every sea journey — built for hotels, DMCs, travel pros, boat partners, marinas, and coastal destinations.",
+      "One platform for every sea journey — built for hotels, DMCs, boat partners, marinas, and coastal destinations.",
     type: "website",
   },
 };

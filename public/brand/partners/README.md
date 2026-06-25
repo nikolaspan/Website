@@ -12,20 +12,28 @@ below. They appear automatically in the Partners section (square logo chips).
 
 ## Filenames
 
-| Partner        | File                  |
-| -------------- | --------------------- |
-| AMANZOE        | `amanzoe.png`         |
-| ONE & ONLY     | `one-and-only.png`    |
-| AVANT MAR      | `avant-mar.png`       |
-| ON RESIDENCES  | `on-residences.png`   |
-| SETE           | `sete.png`            |
-| HCH            | `hch.png`             |
-| ELEVATE GR     | `elevate-gr.png`      |
-| CAPSULET       | `capsulet.png`        |
-| HELMEPA        | `helmepa.png`         |
-| AEGEAN CH.     | `aegean-ch.png`       |
-| BLUE LINE      | `blue-line.png`       |
-| MARE CO.       | `mare-co.png`         |
+These map the partners in `src/data/content.ts` to the actual image files in
+this folder.
+
+| Partner             | File                                                    |
+| ------------------- | ------------------------------------------------------- |
+| AMANZOE             | `images_500x500_enhanced.png`                           |
+| ONE & ONLY          | `one_and_only_500x500_enhanced.png`                     |
+| AVANT MAR           | `avant_mar_500x500_enhanced.png`                        |
+| ON RESIDENCES       | `on_residence_500x500_enhanced.png`                     |
+| 91 ATHENS RIVIERA   | `91_1_500x500_enhanced.png`                             |
+| SILVERSANDS         | `silversands_500x500_enhanced.png`                      |
+| GRIVALIA HOSPITALITY | `grivalia_hospitality_logo_e1665468820635_500x500_enhanced.png` |
+| ELEVATE GR          | `elevate_500x500_enhanced.png`                          |
+| CAPSULET            | `capsulet_logo_500x500_enhanced.png`                    |
+| STARTUS INSIGHTS    | `start_us_500x500_enhanced.png`                         |
+| GRIVALIA MANAGEMENT | `management_grivalia_500x500_enhanced.png`              |
+| HELMEPA             | `helmepa_500x500_enhanced.png`                          |
+| BLUE STAR           | `blue_star_500x500_enhanced.png`                        |
+| YNANP               | `ynanp_500x500_enhanced.png`                            |
+
+Unused file still in this folder: `amangati_500x500_enhanced.png`
+("Aman at Sea") — not currently wired to a partner.
 
 To add more partners, edit `src/data/content.ts` and set each partner's
 `logo` path to a file in this folder.

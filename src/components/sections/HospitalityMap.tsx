@@ -65,6 +65,7 @@ const PORTS: Record<PortKey, Port> = {
 // Partner -> nearest port (presentation only)
 const PLACEMENT: Record<string, PortKey> = {
   "ONE & ONLY": "athens",
+  "91 ATHENS RIVIERA": "athens",
   AMANZOE: "portoHeli",
   "AVANT MAR": "paros",
 };
