@@ -120,7 +120,7 @@ export function HospitalityMap({ partners }: { partners: Partner[] }) {
               key={partner.name}
               className="group flex items-center gap-4 rounded-2xl border border-coastal/12 bg-coastal/[0.03] px-5 py-4 transition-all duration-300 hover:border-aqua/40 hover:bg-coastal/[0.06]"
             >
-              <PartnerLogo name={partner.name} logo={partner.logo} size={48} />
+              <PartnerLogo name={partner.name} logo={partner.logo} size={84} />
               <div className="min-w-0 flex-1">
                 <div className="font-display text-base font-extralight uppercase tracking-[0.16em] text-coastal">
                   {partner.name}

@@ -50,7 +50,7 @@ export function PartnerLogo({
         <img
           src={logo}
           alt={`${name} logo`}
-          className="h-[68%] w-[78%] object-contain"
+          className="h-[80%] w-[86%] object-contain"
           loading="lazy"
           decoding="async"
           onError={() => setFailed(true)}
