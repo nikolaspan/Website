@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Button } from "@/components/ui/Button";
@@ -27,7 +28,7 @@ export function Navbar() {
     >
       <Container>
         <nav className="flex h-[72px] items-center gap-8">
-          <a
+          <Link
             href="/#top"
             className="flex items-center gap-2.5 text-coastal"
             aria-label={`${site.name} home`}
@@ -46,17 +47,17 @@ export function Navbar() {
                 </span>
               ))}
             </span>
-          </a>
+          </Link>
 
           <ul className="hidden flex-1 items-center gap-7 md:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   className="text-[13px] font-medium text-coastal/70 transition-colors hover:text-aqua"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

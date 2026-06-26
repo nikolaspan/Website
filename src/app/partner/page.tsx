@@ -62,7 +62,7 @@ export default function PartnerPage() {
             <p className="max-w-xl text-[clamp(1rem,1.2vw,1.15rem)] leading-relaxed text-coastal/75">
               Tell us about your hotel, DMC, fleet, or destination. We&apos;ll
               show you how SAIL-E brings clarity, speed, and care to every sea
-              journey — and get you set up on the platform.
+              journey and get you set up on the platform.
             </p>
           </div>
         </Reveal>
