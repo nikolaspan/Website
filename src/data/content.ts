@@ -160,9 +160,9 @@ export const partnerGroups: PartnerGroup[] = [
 ];
 
 export const partnerStats = [
-  { value: "14", label: "Trusted partners" },
-  { value: "3", label: "Sectors" },
-  { value: "1", label: "Mediterranean network" },
+  { value: "€3M", label: "In charters managed" },
+  { value: "1000+", label: "Bookings completed" },
+  { value: "100%", label: "Vetted operators" },
 ];
 
 export const impactCards: {

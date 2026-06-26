@@ -1,11 +1,9 @@
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup } from "@/components/ui/Reveal";
 import { PartnerLogo } from "@/components/ui/PartnerLogo";
 import { HospitalityMap } from "@/components/sections/HospitalityMap";
-import { partnerGroups, partnerStats } from "@/data/content";
-import { site } from "@/data/site";
+import { partnerGroups } from "@/data/content";
 import { cn } from "@/lib/cn";
 
 export function Partners() {
@@ -98,25 +96,6 @@ export function Partners() {
           </div>
         ))}
 
-        <Reveal>
-          <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-aqua/20 pt-7">
-            <div className="flex flex-wrap gap-x-14 gap-y-6">
-              {partnerStats.map((stat) => (
-                <div key={stat.label} className="flex items-baseline gap-3">
-                  <span className="font-display text-[44px] font-extralight leading-none tracking-[-0.02em] text-aqua">
-                    {stat.value}
-                  </span>
-                  <span className="max-w-[160px] text-[11px] font-semibold uppercase tracking-[0.18em] text-coastal/60">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <Button href={site.partnerHref} variant="ghostDark">
-              Become a partner →
-            </Button>
-          </div>
-        </Reveal>
       </Container>
     </section>
   );

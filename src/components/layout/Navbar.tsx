@@ -40,7 +40,7 @@ export function Navbar() {
                   {i < arr.length - 1 && (
                     <span
                       aria-hidden="true"
-                      className="mx-[0.12em] inline-block h-[1.5px] w-[0.7em] rounded-full bg-current align-middle"
+                      className="mx-[0.1em] inline-block h-[1.5px] w-[0.4em] rounded-full bg-current align-middle"
                     />
                   )}
                 </span>

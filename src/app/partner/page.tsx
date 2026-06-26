@@ -4,7 +4,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { AmbientWaves } from "@/components/ui/Waves";
-import { PartnerForm } from "@/components/sections/PartnerForm";
+import { partnerStats } from "@/data/content";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -68,57 +68,103 @@ export default function PartnerPage() {
         </Reveal>
 
         <div className="mt-14 grid items-start gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
-          {/* Left — reasons + direct channels */}
+          {/* Left — why partner */}
           <Reveal delay={80}>
-            <div>
-              <ul className="flex flex-col gap-6">
-                {reasons.map((r) => (
-                  <li key={r.title} className="flex gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-aqua/25 bg-aqua/10 text-aqua">
-                      <Icon name={r.icon} size={20} />
-                    </span>
-                    <div>
-                      <h2 className="font-display text-lg font-light text-coastal">
-                        {r.title}
-                      </h2>
-                      <p className="mt-1 max-w-sm text-sm leading-relaxed text-coastal/60">
-                        {r.body}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+            <ul className="flex flex-col gap-6">
+              {reasons.map((r) => (
+                <li key={r.title} className="flex gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-aqua/25 bg-aqua/10 text-aqua">
+                    <Icon name={r.icon} size={20} />
+                  </span>
+                  <div>
+                    <h2 className="font-display text-lg font-light text-coastal">
+                      {r.title}
+                    </h2>
+                    <p className="mt-1 max-w-sm text-sm leading-relaxed text-coastal/60">
+                      {r.body}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
 
-              <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-coastal/12 bg-coastal/10">
+          {/* Right — direct contact card */}
+          <Reveal delay={140}>
+            <div className="rounded-[28px] bg-coastal p-7 shadow-[0_30px_80px_rgba(1,24,30,0.45)] sm:p-9">
+              <h2 className="font-display text-2xl font-light text-sea-950">
+                Talk to us
+              </h2>
+              <p className="mt-2 max-w-sm text-sm leading-relaxed text-sea-950/60">
+                Reach the SAIL-E partnerships team directly — we usually reply
+                within a day.
+              </p>
+
+              <ul className="mt-7 border-y border-sea-950/10">
                 {channels.map((c) => {
                   const external = c.href.startsWith("http");
                   return (
-                    <a
+                    <li
                       key={c.label}
-                      href={c.href}
-                      {...(external
-                        ? { target: "_blank", rel: "noopener noreferrer" }
-                        : {})}
-                      className="group bg-sea-950/40 px-5 py-4 transition-colors hover:bg-sea-950/20"
+                      className="border-b border-sea-950/10 last:border-b-0"
                     >
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-aqua/80">
-                        {c.label}
-                      </div>
-                      <div className="mt-1 text-sm text-coastal/85 transition-colors group-hover:text-aqua">
-                        {c.value}
-                      </div>
-                    </a>
+                      <a
+                        href={c.href}
+                        {...(external
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
+                        className="group flex items-center justify-between gap-4 py-3.5"
+                      >
+                        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sea-950/45">
+                          {c.label}
+                        </span>
+                        <span className="text-[15px] text-sea-950 transition-colors group-hover:text-aqua">
+                          {c.value}
+                        </span>
+                      </a>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
+
+              <a
+                href={`mailto:${site.email}`}
+                className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-aqua px-7 py-3.5 text-sm font-medium tracking-[0.03em] text-white shadow-[0_12px_32px_rgba(38,189,216,0.28)] transition-all duration-300 ease-[cubic-bezier(0.2,0.6,0.2,1)] hover:-translate-y-px hover:bg-aqua-500 hover:shadow-[0_20px_48px_rgba(38,189,216,0.42)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2"
+              >
+                Email us →
+              </a>
             </div>
           </Reveal>
-
-          {/* Right — the form */}
-          <Reveal delay={140}>
-            <PartnerForm />
-          </Reveal>
         </div>
+
+        {/* By the numbers */}
+        <Reveal delay={80}>
+          <div className="mt-20 border-t border-coastal/12 pt-12">
+            <Eyebrow className="text-aqua">By the numbers</Eyebrow>
+            <h2 className="mt-4 max-w-xl font-display text-[clamp(1.6rem,3vw,2.6rem)] font-light leading-[1.1] tracking-[-0.02em] text-coastal">
+              A growing platform{" "}
+              <span className="font-extralight italic text-aqua">
+                you can build on.
+              </span>
+            </h2>
+
+            <div className="mt-10 grid gap-px overflow-hidden rounded-3xl border border-aqua/15 bg-aqua/10 sm:grid-cols-3">
+              {partnerStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="bg-sea-950/40 px-7 py-9 transition-colors duration-300 hover:bg-sea-950/20"
+                >
+                  <div className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-extralight leading-none tracking-[-0.02em] text-aqua">
+                    {stat.value}
+                  </div>
+                  <div className="mt-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-coastal/60">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );
