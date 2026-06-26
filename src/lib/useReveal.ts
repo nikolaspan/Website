@@ -28,7 +28,11 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+      // Content is visible by default, so the `.in` animation must start BEFORE
+      // the element scrolls into view — otherwise it shows at full opacity, then
+      // snaps to 0 and re-animates (a flicker). A positive bottom margin fires
+      // the observer while the element is still just below the fold.
+      { threshold: 0, rootMargin: "0px 0px 10% 0px" },
     );
 
     observer.observe(el);

@@ -111,6 +111,18 @@
 .reveal-stagger.in > *:nth-child(4) {
   animation-delay: 330ms;
 }
+.reveal-stagger.in > *:nth-child(5) {
+  animation-delay: 440ms;
+}
+.reveal-stagger.in > *:nth-child(6) {
+  animation-delay: 550ms;
+}
+.reveal-stagger.in > *:nth-child(7) {
+  animation-delay: 660ms;
+}
+.reveal-stagger.in > *:nth-child(8) {
+  animation-delay: 770ms;
+}
 
 /* =========================================================================
    Headline word-by-word rise
@@ -156,6 +168,21 @@
 }
 .headline.in .word:nth-child(7) > span {
   animation-delay: 700ms;
+}
+.headline.in .word:nth-child(8) > span {
+  animation-delay: 810ms;
+}
+.headline.in .word:nth-child(9) > span {
+  animation-delay: 920ms;
+}
+.headline.in .word:nth-child(10) > span {
+  animation-delay: 1030ms;
+}
+.headline.in .word:nth-child(11) > span {
+  animation-delay: 1140ms;
+}
+.headline.in .word:nth-child(12) > span {
+  animation-delay: 1250ms;
 }
 
 /* Strike-through word (hero "complicated.") */

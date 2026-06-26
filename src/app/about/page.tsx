@@ -8,7 +8,7 @@ import { founders } from "@/data/team";
 export const metadata: Metadata = {
   title: "About SAIL-E · Meet our founders",
   description:
-    "Meet the founders of SAIL-E — the team bringing together technology, luxury hospitality, and a lifelong love of the sea to reimagine sea mobility.",
+    "Meet the founders of SAIL-E the team brings together technology, luxury hospitality, and a lifelong love of the sea to reimagine sea mobility.",
 };
 
 /** Initials from the first and last word of a name, e.g. "Minas Tsigkos" → "MT". */
