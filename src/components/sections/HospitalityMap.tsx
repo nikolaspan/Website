@@ -2,6 +2,7 @@ import { RevealGroup } from "@/components/ui/Reveal";
 import { PartnerLogo } from "@/components/ui/PartnerLogo";
 import type { Partner } from "@/data/content";
 import { GREECE_PATHS, GREECE_VIEWBOX } from "@/data/greece";
+import { cn } from "@/lib/cn";
 
 /* -------------------------------------------------------------------------
    Coordinates projected from the SVG's geoViewBox
@@ -68,6 +69,7 @@ const PLACEMENT: Record<string, PortKey> = {
   "91 ATHENS RIVIERA": "athens",
   AMANZOE: "portoHeli",
   "AVANT MAR": "paros",
+  "ON RESIDENCE": "thessaloniki",
 };
 
 /* -------------------------------------------------------------------------
@@ -118,12 +120,32 @@ export function HospitalityMap({ partners }: { partners: Partner[] }) {
           return (
             <article
               key={partner.name}
-              className="group flex items-center gap-4 rounded-2xl border border-coastal/12 bg-coastal/[0.03] px-5 py-4 transition-all duration-300 hover:border-aqua/40 hover:bg-coastal/[0.06]"
+              className={cn(
+                "group relative flex items-center gap-4 rounded-2xl border border-coastal/12 bg-coastal/[0.03] px-5 py-4 transition-all duration-300 hover:border-aqua/40 hover:bg-coastal/[0.06]",
+                partner.url && "hover:-translate-y-0.5",
+              )}
             >
+              {partner.url && (
+                <a
+                  href={partner.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${partner.name} — visit website`}
+                  className="absolute inset-0 z-20 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua"
+                />
+              )}
               <PartnerLogo name={partner.name} logo={partner.logo} size={84} />
               <div className="min-w-0 flex-1">
-                <div className="font-display text-base font-extralight uppercase tracking-[0.16em] text-coastal">
+                <div className="flex items-center gap-1.5 font-display text-base font-extralight uppercase tracking-[0.16em] text-coastal">
                   {partner.name}
+                  {partner.url && (
+                    <span
+                      aria-hidden="true"
+                      className="text-aqua opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    >
+                      ↗
+                    </span>
+                  )}
                 </div>
                 <div className="text-[11px] tracking-[0.04em] text-coastal/55">
                   {partner.role}

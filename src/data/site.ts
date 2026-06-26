@@ -17,6 +17,7 @@ export const navLinks = [
   { label: "Platform", href: "/#platform" },
   { label: "Partners", href: "/#partners" },
   { label: "Impact", href: "/#impact" },
+  { label: "About", href: "/about/" },
   { label: "Press", href: "/press/" },
   //{ label: "Partner with us", href: "/partner/" },
 ];
@@ -33,6 +34,7 @@ export const footerColumns = [
   {
     title: "Company",
     links: [
+      { label: "About", href: "/about/" },
       { label: "Impact", href: "/#impact" },
       { label: "Press", href: "/press/" },
       { label: "Contact", href: "/partner/" },

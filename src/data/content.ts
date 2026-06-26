@@ -68,6 +68,8 @@ export type Partner = {
   /** Logo image under /public, e.g. "/brand/partners/amanzoe.png".
    *  Missing/failed images fall back to brand-styled initials automatically. */
   logo?: string;
+  /** Optional external website. When set, the partner card/row links to it. */
+  url?: string;
 };
 export type PartnerGroup = { category: string; partners: Partner[] };
 
@@ -79,36 +81,43 @@ export const partnerGroups: PartnerGroup[] = [
         name: "AMANZOE",
         role: "Luxury resort · Peloponnese",
         logo: "/brand/partners/images_500x500_enhanced.png",
+        url: "https://www.aman.com/resorts/amanzoe",
       },
       {
         name: "ONE & ONLY",
         role: "Luxury resort · Athens Riviera",
         logo: "/brand/partners/one_and_only_500x500_enhanced.png",
+        url: "https://www.oneandonlyresorts.com/aesthesis",
       },
       {
         name: "AVANT MAR",
         role: "Boutique resort · Paros",
         logo: "/brand/partners/avant_mar_500x500_enhanced.png",
+        url: "https://www.avantmar.com/",
       },
       {
         name: "ON RESIDENCE",
         role: "Luxury Hotel",
         logo: "/brand/partners/on_residence_500x500_enhanced.png",
+        url: "https://www.onresidence.gr/",
       },
       {
         name: "91 ATHENS RIVIERA",
         role: "Seafront residences · Athens Riviera",
         logo: "/brand/partners/91_1_500x500_enhanced.png",
+        url: "https://domesresorts.com/91athensrivieratheresort/",
       },
       {
         name: "SILVERSANDS",
         role: "Hotels & resorts",
         logo: "/brand/partners/silversands_500x500_enhanced.png",
+        url: "https://www.silversandscollection.com/resorts/grand-anse",
       },
       {
         name: "GRIVALIA HOSPITALITY",
         role: "Hospitality investment group",
         logo: "/brand/partners/grivalia_hospitality_logo_e1665468820635_500x500_enhanced.png",
+        url: "https://grivaliahospitality.com/",
       },
     ],
   },
@@ -119,21 +128,37 @@ export const partnerGroups: PartnerGroup[] = [
         name: "ELEVATE GR",
         role: "National innovation initiative",
         logo: "/brand/partners/elevate_500x500_enhanced.png",
+        url: "https://registry.elevategreece.gov.gr/company/ezsail-boat-taxi-%CE%B9-%CE%BA-%CE%B5/",
       },
       {
         name: "CAPSULET",
         role: "Travel & hospitality accelerator",
         logo: "/brand/partners/capsulet_logo_500x500_enhanced.png",
+        url: "https://www.capsuletaccelerator.gr/el/startups/sail-e",
       },
       {
         name: "STARTUS INSIGHTS",
         role: "Innovation intelligence platform",
         logo: "/brand/partners/start_us_500x500_enhanced.png",
+        url: "https://www.startus-insights.com/",
       },
       {
         name: "GRIVALIA MANAGEMENT",
         role: "Real estate & asset management",
         logo: "/brand/partners/management_grivalia_500x500_enhanced.png",
+        url: "https://www.grivalia.com/",
+      },
+      {
+        name: "ENVOLVE",
+        role: "Entrepreneurship & innovation",
+        logo: "/brand/partners/envolve.png",
+        url: "https://envolveglobal.org/envolvexl-portfolio/sail-e/",
+      },
+      {
+        name: "UNIWA",
+        role: "University of West Attica",
+        logo: "/brand/partners/Uniwa.png",
+        url: "https://www.uniwa.gr/",
       },
     ],
   },
@@ -144,16 +169,19 @@ export const partnerGroups: PartnerGroup[] = [
         name: "HELMEPA",
         role: "Marine environment protection",
         logo: "/brand/partners/helmepa_500x500_enhanced.png",
+        url: "https://www.helmepa.gr/",
       },
       {
         name: "BLUE STAR",
         role: "Aegean ferry network",
         logo: "/brand/partners/blue_star_500x500_enhanced.png",
+        url: "https://www.bluestarferries.com/",
       },
       {
         name: "YNANP",
         role: "Ministry of Maritime Affairs",
         logo: "/brand/partners/ynanp_500x500_enhanced.png",
+        url: "https://www.ynanp.gr/el/",
       },
     ],
   },

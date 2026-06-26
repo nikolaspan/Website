@@ -45,7 +45,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jost.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${jost.variable}`}
+    >
       <body className="min-h-screen bg-sea-950 font-sans antialiased">
         <ScrollProgress />
         <IntroSplash />

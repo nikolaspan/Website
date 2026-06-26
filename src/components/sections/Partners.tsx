@@ -65,7 +65,7 @@ export function Partners() {
                     <div
                       key={partner.name}
                       className={cn(
-                        "partner-card flex min-h-[150px] flex-col justify-between rounded-[18px] border bg-white px-6 py-7",
+                        "partner-card group flex min-h-[150px] flex-col justify-between rounded-[18px] border bg-white px-6 py-7",
                         "transition-[transform,border-color,box-shadow] duration-[520ms] ease-[cubic-bezier(0.37,0,0.16,1)]",
                         "hover:-translate-y-1.5 hover:border-transparent",
                         alt
@@ -74,6 +74,15 @@ export function Partners() {
                       )}
                     >
                       <span className="p-corner absolute right-3.5 top-3.5 h-1.5 w-1.5 rounded-full bg-aqua opacity-50 shadow-[0_0_8px_#26BDD8]" />
+                      {partner.url && (
+                        <a
+                          href={partner.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${partner.name} — visit website`}
+                          className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2"
+                        />
+                      )}
                       <div>
                         <PartnerLogo
                           name={partner.name}
@@ -81,8 +90,16 @@ export function Partners() {
                           size={64}
                           className="p-logo"
                         />
-                        <div className="p-name mt-4 font-display text-lg font-extralight uppercase tracking-[0.18em] text-sea-950">
+                        <div className="p-name mt-4 flex items-center gap-1.5 font-display text-lg font-extralight uppercase tracking-[0.18em] text-sea-950">
                           {partner.name}
+                          {partner.url && (
+                            <span
+                              aria-hidden="true"
+                              className="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            >
+                              ↗
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="p-role mt-3 text-[11px] font-medium tracking-[0.06em] text-sea-950/60">
