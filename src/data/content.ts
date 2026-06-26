@@ -140,7 +140,7 @@ export const partnerGroups: PartnerGroup[] = [
         name: "STARTUS INSIGHTS",
         role: "Innovation intelligence platform",
         logo: "/brand/partners/start_us_500x500_enhanced.png",
-        url: "https://www.startus-insights.com/",
+        url: "https://www.startus-insights.com/innovators-guide/transportation-trends/#On-Demand-Transportation",
       },
       {
         name: "GRIVALIA MANAGEMENT",
