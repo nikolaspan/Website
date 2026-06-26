@@ -30,7 +30,6 @@ export const pressItems: PressItem[] = [
     sourceType: "Site",
     url: "https://www.itspossible.gr/%CE%B4%CF%8D%CE%BF-%CF%86%CE%AF%CE%BB%CE%BF%CE%B9-%CE%AD%CF%86%CF%84%CE%B9%CE%B1%CE%BE%CE%B1%CE%BD-%CE%BC%CE%AF%CE%B1-%CE%B5%CE%BB%CE%BB%CE%B7%CE%BD%CE%B9%CE%BA%CE%AE-%CF%80%CE%BB%CE%B1%CF%84%CF%86/",
     image: "/press/itspossible.png",
-    date: "2026",
     excerpt:
       "The story behind SAIL-E and the idea of organising sea mobility in one trusted place.",
   },
@@ -40,7 +39,6 @@ export const pressItems: PressItem[] = [
     sourceType: "Site",
     url: "https://www.newmoney.gr/roh/palmos-oikonomias/nautilia/minas-tsigkos-nikolas-panagiotidis-sail-e-mia-efarmogi-gia-on-demand-thalassies-metakinisis-pics/",
     image: "/press/newmoney.png",
-    date: "2026",
     excerpt:
       "Minas Tsigkos and Nikolas Panagiotidis on building SAIL-E for the Mediterranean.",
   },
@@ -51,7 +49,6 @@ export const pressItems: PressItem[] = [
     sourceType: "Site",
     url: "https://www.newmoney.gr/roh/palmos-oikonomias/tourismos/to-avant-mar-ke-i-grivalia-hospitality-oloklirosan-me-epitichia-to-triimero-perivallontikon-draseon-stin-paro-pics/",
     image: "/press/newmoney%20blue%20life.png",
-    date: "2026",
     excerpt:
       "Inside the Blue Life Paros initiative organised by HELMEPA on the island.",
   },
@@ -62,7 +59,6 @@ export const pressItems: PressItem[] = [
     sourceType: "Site",
     url: "https://www.fortunegreece.com/article/avant-mar-paros-grivalia-hospitality-polidiastati-drasi-perivallontikis-evaisthitopoiisis-stin-paro/",
     image: "/press/fortune.png",
-    date: "2026",
     excerpt:
       "Coverage of the Blue Life Paros environmental-awareness programme.",
   },
@@ -88,11 +84,10 @@ export type EsgFeature = {
 export const blueLifeParos: EsgFeature = {
   eyebrow: "Blue Life Paros",
   title:
-    "Avant Mar & Grivalia Hospitality complete three days of environmental action on Paros",
+    "Avant Mar Grivalia Hospitality & SAIL-E complete three days of environmental action on Paros",
   source: "NewMoney",
   sourceType: "Site",
   url: "https://www.newmoney.gr/roh/palmos-oikonomias/tourismos/to-avant-mar-ke-i-grivalia-hospitality-oloklirosan-me-epitichia-to-triimero-perivallontikon-draseon-stin-paro-pics/",
-  date: "2026",
   // ✏️ Write your own story here — each line is a paragraph.
   body: [
     "Over three days on Paros, Avant Mar and Grivalia Hospitality joined a programme of environmental actions dedicated to protecting the island's coastline and sea.",
