@@ -12,7 +12,7 @@ export const heroJourneys: JourneyRow[] = [
   { route: "Amanzoe → Paros · 10:30", status: "Confirmed" },
   { route: "One & Only → Antiparos · 13:00", status: "Pending" },
   { route: "Avant Mar → Naxos · 16:45", status: "Confirmed" },
-  { route: "On Residences → Mykonos · 18:20", status: "Confirmed" },
+  { route: "Athens → Mykonos · 18:20", status: "Confirmed" },
 ];
 
 export const services = [
@@ -91,8 +91,8 @@ export const partnerGroups: PartnerGroup[] = [
         logo: "/brand/partners/avant_mar_500x500_enhanced.png",
       },
       {
-        name: "ON RESIDENCES",
-        role: "Hospitality group",
+        name: "ON RESIDENCE",
+        role: "Luxury Hotel",
         logo: "/brand/partners/on_residence_500x500_enhanced.png",
       },
       {

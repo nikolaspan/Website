@@ -28,19 +28,20 @@ export function Navbar() {
       <Container>
         <nav className="flex h-[72px] items-center gap-8">
           <a
-            href="#top"
+            href="/#top"
             className="flex items-center gap-2.5 text-coastal"
             aria-label={`${site.name} home`}
           >
             <BrandLogo size={30} className="rounded-md" />
-            <span className="font-display text-sm font-extralight uppercase tracking-[0.22em]">
+            <span className="inline-flex items-center font-display text-sm font-extralight uppercase tracking-[0.22em]">
               {site.name.split("-").map((part, i, arr) => (
-                <span key={i}>
+                <span key={i} className="inline-flex items-center">
                   {part}
                   {i < arr.length - 1 && (
-                    <span className="text-[3em] leading-none align-middle">
-                      -
-                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="mx-[0.12em] inline-block h-[1.5px] w-[0.7em] rounded-full bg-current align-middle"
+                    />
                   )}
                 </span>
               ))}

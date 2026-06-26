@@ -6,33 +6,35 @@ export const site = {
   url: "https://www.sail-e.com",
   email: "info@sail-e.com",
   social: "@saile_app",
-  // Where the recurring "Partner with us" CTA points. The standalone build
-  // linked to a separate partner.html; we anchor to the on-page CTA instead.
-  partnerHref: "#contact",
+  // Where the recurring "Partner with us" CTA points — the dedicated
+  // partner / contact page. (trailingSlash export → "/partner/".)
+  partnerHref: "/partner/",
 };
 
+// Home-section anchors are home-absolute ("/#id") so they work from any route:
+// on the home page they scroll smoothly; from /partner they return home first.
 export const navLinks = [
-  { label: "Platform", href: "#platform" },
-  { label: "Partners", href: "#partners" },
-  { label: "Impact", href: "#impact" },
-  { label: "Contact", href: "#contact" },
+  { label: "Platform", href: "/#platform" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Impact", href: "/#impact" },
+  { label: "Partner with us", href: "/partner/" },
 ];
 
 export const footerColumns = [
   {
     title: "Platform",
     links: [
-      { label: "What we do", href: "#what" },
-      { label: "For hospitality", href: "#platform" },
-      { label: "Partners", href: "#partners" },
+      { label: "What we do", href: "/#what" },
+      { label: "For hospitality", href: "/#platform" },
+      { label: "Partners", href: "/#partners" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "Impact", href: "#impact" },
-      { label: "Contact", href: "#contact" },
-      { label: "Press", href: "#contact" },
+      { label: "Impact", href: "/#impact" },
+      { label: "Partner with us", href: "/partner/" },
+      { label: "Contact", href: "/partner/" },
     ],
   },
   {
@@ -40,7 +42,7 @@ export const footerColumns = [
     links: [
       { label: "info@sail-e.com", href: "mailto:info@sail-e.com" },
       { label: "www.sail-e.com", href: "https://www.sail-e.com" },
-      { label: "@saile_app", href: "#contact" },
+      { label: "@saile_app", href: "/partner/" },
     ],
   },
 ];

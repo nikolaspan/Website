@@ -335,6 +335,17 @@
   transition: color 520ms var(--ease-water), background 520ms var(--ease-water),
     box-shadow 520ms var(--ease-water);
 }
+/* Keep the logo chip above the sliding hover fill (z-index:0) so it never
+   gets covered, and give it a small lift for polish. */
+.partner-card .p-logo {
+  position: relative;
+  z-index: 1;
+  transition: transform 520ms var(--ease-water), box-shadow 520ms var(--ease-water);
+}
+.partner-card:hover .p-logo {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(1, 24, 30, 0.3);
+}
 .partner-card:hover .p-name {
   color: #ffffff;
 }

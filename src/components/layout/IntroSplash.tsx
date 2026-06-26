@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { site } from "@/data/site";
 
@@ -15,6 +16,7 @@ import { site } from "@/data/site";
  * are hidden so the page behaves normally.
  */
 export function IntroSplash() {
+  const pathname = usePathname();
   const overlayRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const cueRef = useRef<HTMLDivElement>(null);
@@ -59,6 +61,10 @@ export function IntroSplash() {
       window.removeEventListener("resize", onScroll);
     };
   }, []);
+
+  // The intro only belongs on the home page; other routes (e.g. /partner)
+  // render normally without the splash or its tall scroll spacer.
+  if (pathname !== "/") return null;
 
   return (
     <>

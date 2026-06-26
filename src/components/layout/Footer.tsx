@@ -15,8 +15,7 @@ export function Footer() {
               </span>
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-coastal/60">
-              Your on-demand gateway to the sea. Built for hotels, DMCs, travel
-              pros, boat partners, marinas, and coastal destinations.
+              Your on-demand gateway to the sea. Built for hotels, DMCs, boat partners, marinas, and coastal destinations.
             </p>
           </div>
 

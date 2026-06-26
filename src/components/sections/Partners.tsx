@@ -81,6 +81,7 @@ export function Partners() {
                           name={partner.name}
                           logo={partner.logo}
                           size={64}
+                          className="p-logo"
                         />
                         <div className="p-name mt-4 font-display text-lg font-extralight uppercase tracking-[0.18em] text-sea-950">
                           {partner.name}
