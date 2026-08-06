@@ -38,6 +38,10 @@ export const footerColumns = [
       { label: "Impact", href: "/#impact" },
       { label: "Press", href: "/press/" },
       { label: "Contact", href: "/partner/" },
+      {
+        label: "Data & Cookie Policy",
+        href: "/data-cookie-policy/",
+      },
     ],
   },
   {

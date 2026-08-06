@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
@@ -9,15 +9,58 @@ import { Button } from "@/components/ui/Button";
 import { navLinks, site } from "@/data/site";
 import { cn } from "@/lib/cn";
 
-/** A link is "active" when it points to the current route (ignores #anchors,
- *  and never highlights the home-section links). */
+const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
+
+/** Tracks both page routes and the home-page section nearest the reading line. */
 function useIsActive() {
   const pathname = usePathname();
-  const norm = (p: string) => p.replace(/\/+$/, "") || "/";
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    if (normalizePath(pathname) !== "/") return;
+
+    const sectionIds = navLinks
+      .map((link) => link.href.split("#")[1])
+      .filter((id): id is string => Boolean(id));
+    let frame = 0;
+
+    const updateActiveSection = () => {
+      const readingLine =
+        window.scrollY + Math.min(window.innerHeight * 0.38, 360);
+      let nextSection = "";
+
+      for (const id of sectionIds) {
+        const section = document.getElementById(id);
+        if (section && section.offsetTop <= readingLine) nextSection = id;
+      }
+
+      setActiveSection((current) =>
+        current === nextSection ? current : nextSection,
+      );
+    };
+
+    const scheduleUpdate = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActiveSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
+    };
+  }, [pathname]);
+
   return (href: string) => {
-    const path = href.split("#")[0];
-    if (!path || path === "/") return false;
-    return norm(pathname) === norm(path);
+    const [path, hash] = href.split("#");
+    if (normalizePath(pathname) !== normalizePath(path || "/")) return false;
+    return hash ? activeSection === hash : true;
   };
 }
 
@@ -26,6 +69,8 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isActive = useIsActive();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLElement>(null);
 
   // Close the mobile menu when the route changes — a render-time reset, the
   // React-recommended alternative to calling setState inside an effect.
@@ -36,17 +81,43 @@ export function Navbar() {
   }
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close on Escape and when resizing up to desktop.
+  // Close on Escape and when resizing up to the full desktop navigation.
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    const onResize = () => window.innerWidth >= 768 && setOpen(false);
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        requestAnimationFrame(() => menuButtonRef.current?.focus());
+        return;
+      }
+
+      if (event.key === "Tab") {
+        const menuItems = mobileMenuRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        );
+        const focusable = [
+          menuButtonRef.current,
+          ...(menuItems ? Array.from(menuItems) : []),
+        ].filter((item): item is HTMLElement => Boolean(item));
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+    const onResize = () => window.innerWidth >= 1024 && setOpen(false);
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
     return () => {
@@ -55,23 +126,52 @@ export function Navbar() {
     };
   }, [open]);
 
+  // Keep the page beneath the mobile navigation still while it is open.
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
+
+  const elevated = scrolled || open;
+  const partnerActive = isActive(site.partnerHref);
+
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-40 transition-all duration-[380ms] ease-[cubic-bezier(0.2,0.6,0.2,1)]",
-        (scrolled || open) &&
-          "border-b border-aqua/15 bg-sea-950/80 backdrop-blur-lg backdrop-saturate-150",
-      )}
-    >
-      <Container>
-        <nav className="flex h-[72px] items-center gap-8">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-40 py-3">
+      {/* The page backdrop also provides a generous outside-click target. */}
+      <button
+        type="button"
+        tabIndex={-1}
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+        className={cn(
+          "pointer-events-none fixed inset-0 bg-sea-950/55 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 lg:hidden",
+          open && "pointer-events-auto opacity-100",
+        )}
+      />
+
+      <Container className="relative z-10">
+        <nav
+          aria-label="Primary navigation"
+          className={cn(
+            "pointer-events-auto grid h-16 grid-cols-[auto_1fr_auto] items-center gap-2 rounded-[20px] border px-3",
+            "transition-[height,background-color,border-color,box-shadow,backdrop-filter] duration-[380ms] ease-[cubic-bezier(0.2,0.6,0.2,1)] sm:px-4 lg:grid-cols-[1fr_auto_1fr] lg:gap-5",
+            elevated
+              ? "h-[60px] border-aqua/15 bg-sea-950/[0.88] shadow-[0_18px_55px_rgba(1,24,30,0.38)] backdrop-blur-xl backdrop-saturate-150"
+              : "border-coastal/[0.07] bg-sea-950/[0.24] backdrop-blur-sm",
+          )}
+        >
           <Link
             href="/#top"
-            className="flex items-center gap-2.5 text-coastal transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+            onClick={() => setOpen(false)}
+            className="-ml-1 flex min-h-11 w-fit items-center gap-2.5 rounded-xl px-1 text-coastal transition-colors hover:text-aqua focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2 focus-visible:ring-offset-sea-950"
             aria-label={`${site.name} home`}
           >
-            <BrandLogo size={30} className="rounded-md" />
-            <span className="inline-flex items-center font-display text-sm font-extralight uppercase tracking-[0.22em]">
+            <BrandLogo size={32} className="rounded-lg" />
+            <span className="inline-flex items-center font-display text-[13px] font-light uppercase tracking-[0.22em] sm:text-sm">
               {site.name.split("-").map((part, i, arr) => (
                 <span key={i} className="inline-flex items-center">
                   {part}
@@ -87,22 +187,23 @@ export function Navbar() {
           </Link>
 
           {/* Desktop links */}
-          <ul className="hidden flex-1 items-center gap-8 md:flex">
+          <ul className="hidden items-center rounded-full border border-coastal/[0.08] bg-coastal/[0.035] p-1 lg:flex">
             {navLinks.map((link) => {
               const active = isActive(link.href);
+              const sectionLink = link.href.includes("#");
               return (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    aria-current={active ? "page" : undefined}
+                    aria-current={
+                      active ? (sectionLink ? "location" : "page") : undefined
+                    }
                     className={cn(
-                      "relative py-1 text-[13px] font-medium transition-colors duration-200",
-                      "after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-aqua",
-                      "after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.2,0.6,0.2,1)]",
-                      "focus-visible:outline-none focus-visible:text-aqua",
+                      "flex min-h-10 items-center rounded-full px-3 text-[12px] font-medium tracking-[0.02em] transition-all duration-300 xl:px-3.5 xl:text-[13px]",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-1 focus-visible:ring-offset-sea-950",
                       active
-                        ? "text-aqua after:scale-x-100"
-                        : "text-coastal/70 after:scale-x-0 hover:text-aqua hover:after:scale-x-100",
+                        ? "bg-aqua/[0.13] text-aqua shadow-[inset_0_0_0_1px_rgba(38,189,216,0.16)]"
+                        : "text-coastal/68 hover:bg-coastal/[0.06] hover:text-coastal",
                     )}
                   >
                     {link.label}
@@ -113,21 +214,36 @@ export function Navbar() {
           </ul>
 
           {/* Right side */}
-          <div className="ml-auto flex items-center gap-2 md:ml-0">
-            <div className="hidden md:block">
-              <Button href={site.partnerHref} size="sm">
-                Partner with us
+          <div className="flex items-center justify-self-end">
+            <div className="hidden lg:block">
+              <Button
+                href={site.partnerHref}
+                size="sm"
+                ariaCurrent={partnerActive ? "page" : undefined}
+                className={cn(
+                  "min-h-11 px-4 xl:px-5",
+                  partnerActive &&
+                    "ring-1 ring-coastal/50 ring-offset-2 ring-offset-sea-950",
+                )}
+              >
+                <span className="hidden xl:inline">Partner with us</span>
+                <span className="xl:hidden">Partner</span>
+                <span aria-hidden="true">↗</span>
               </Button>
             </div>
 
             {/* Mobile toggle */}
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setOpen((o) => !o)}
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? "Close menu" : "Open menu"}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-coastal transition-colors hover:bg-coastal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua md:hidden"
+              className={cn(
+                "inline-flex h-11 min-w-11 items-center justify-center gap-2 rounded-xl px-3 text-coastal transition-colors hover:bg-coastal/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua lg:hidden",
+                open && "bg-aqua/10 text-aqua",
+              )}
             >
               <span className="relative block h-4 w-5" aria-hidden="true">
                 <span
@@ -149,57 +265,98 @@ export function Navbar() {
                   )}
                 />
               </span>
+              <span className="hidden text-[11px] font-semibold uppercase tracking-[0.16em] sm:inline">
+                {open ? "Close" : "Menu"}
+              </span>
             </button>
           </div>
         </nav>
 
-        {/* Mobile menu panel (height-animated) */}
-        <div
+        {/* Mobile menu panel */}
+        <nav
+          ref={mobileMenuRef}
           id="mobile-menu"
+          aria-label="Mobile navigation"
+          aria-hidden={!open}
+          inert={!open}
           className={cn(
-            "grid overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.2,0.6,0.2,1)] md:hidden",
+            "pointer-events-auto grid transition-[grid-template-rows,opacity,transform] duration-300 ease-[cubic-bezier(0.2,0.6,0.2,1)] lg:hidden",
             open
-              ? "grid-rows-[1fr] opacity-100"
-              : "grid-rows-[0fr] opacity-0",
+              ? "grid-rows-[1fr] translate-y-0 opacity-100"
+              : "pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0",
           )}
         >
           <div className="min-h-0 overflow-hidden">
-            <ul className="flex flex-col gap-1 pt-1">
-              {navLinks.map((link) => {
-                const active = isActive(link.href);
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setOpen(false)}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "flex items-center justify-between rounded-xl px-3 py-3 text-[15px] font-medium transition-colors",
-                        active
-                          ? "bg-aqua/10 text-aqua"
-                          : "text-coastal/80 hover:bg-coastal/5 hover:text-aqua",
-                      )}
-                    >
-                      {link.label}
-                      <span aria-hidden="true" className="text-coastal/30">
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
+            <div className="mt-2 max-h-[calc(100dvh-6.5rem)] overflow-y-auto rounded-[22px] border border-aqua/15 bg-[linear-gradient(145deg,rgba(5,38,48,0.98)_0%,rgba(1,24,30,0.98)_72%)] p-2 shadow-[0_26px_80px_rgba(1,24,30,0.62)] backdrop-blur-xl">
+              <div className="flex items-center justify-between px-3 pb-2 pt-2.5">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-coastal/40">
+                  Navigate
+                </span>
+                <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-aqua/80">
+                  <span className="h-1.5 w-1.5 rounded-full bg-aqua shadow-[0_0_10px_#26BDD8]" />
+                  SAIL-E
+                </span>
+              </div>
 
-            <div className="pb-6 pt-4">
-              <Button
-                href={site.partnerHref}
-                className="w-full justify-center"
-              >
-                Partner with us
-              </Button>
+              <ul className="flex flex-col gap-1">
+                {navLinks.map((link, index) => {
+                  const active = isActive(link.href);
+                  const sectionLink = link.href.includes("#");
+                  return (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setOpen(false)}
+                        aria-current={
+                          active
+                            ? sectionLink
+                              ? "location"
+                              : "page"
+                            : undefined
+                        }
+                        className={cn(
+                          "group flex min-h-[54px] items-center gap-3 rounded-2xl border border-transparent px-3.5 text-[15px] font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua",
+                          active
+                            ? "border-aqua/20 bg-aqua/10 text-aqua"
+                            : "text-coastal/80 hover:border-coastal/[0.07] hover:bg-coastal/[0.05] hover:text-coastal",
+                        )}
+                      >
+                        <span className="w-6 text-[10px] font-semibold tracking-[0.16em] text-coastal/30">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="flex-1">{link.label}</span>
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            "flex h-7 w-7 items-center justify-center rounded-full border text-xs transition-all duration-300",
+                            active
+                              ? "border-aqua/25 bg-aqua/10 text-aqua"
+                              : "border-coastal/10 text-coastal/35 group-hover:border-aqua/25 group-hover:text-aqua",
+                          )}
+                        >
+                          →
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="mt-2 border-t border-coastal/[0.08] p-2 pt-4">
+                <Button
+                  href={site.partnerHref}
+                  ariaCurrent={partnerActive ? "page" : undefined}
+                  className="min-h-12 w-full justify-center"
+                >
+                  Partner with us <span aria-hidden="true">↗</span>
+                </Button>
+                <p className="px-3 pb-1 pt-3 text-center text-[10px] uppercase tracking-[0.14em] text-coastal/35">
+                  On-demand sea transportation
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </nav>
       </Container>
     </header>
   );

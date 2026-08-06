@@ -111,7 +111,7 @@ export function HospitalityMap({ partners }: { partners: Partner[] }) {
   const nationwide = partners.filter((p) => !PLACEMENT[p.name]);
 
   return (
-    <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
+    <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] xl:grid-cols-[1.25fr_1fr] xl:gap-8">
       <GreeceMap />
 
       <RevealGroup className="flex flex-col gap-3">

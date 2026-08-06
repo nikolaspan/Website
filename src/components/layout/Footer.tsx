@@ -1,6 +1,31 @@
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { footerColumns, site } from "@/data/site";
+
+const credentials = [
+  {
+    name: "ISO 27701",
+    detail: "Privacy information management",
+    image: "/footer/Badge_ISO27701_.png",
+    href: "/footer/CERT_%2027701_2026_EN.pdf",
+    imageClassName: "h-20 w-[91px]",
+  },
+  {
+    name: "ISO 27001",
+    detail: "Information security management",
+    image: "/footer/Logo_ISO27001.png",
+    href: "/footer/CER_27001_2026_EN.pdf",
+    imageClassName: "h-20 w-[91px]",
+  },
+  {
+    name: "HELMEPA Silver Badge",
+    detail: "Marine litter clean-up commitment",
+    image: "/footer/Silver%20Badge%20SAIL%20-%20E.png",
+    href: "https://www.helmepa.gr/",
+    imageClassName: "h-20 w-20",
+  },
+];
 
 export function Footer() {
   return (
@@ -44,6 +69,56 @@ export function Footer() {
               </ul>
             </div>
           ))}
+        </div>
+
+        <div className="mt-14 border-t border-coastal/10 pt-8">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-2">
+            <div>
+              <h2 className="text-[11px] font-medium uppercase tracking-[0.22em] text-coastal/45">
+                Certifications &amp; impact
+              </h2>
+              <p className="mt-1.5 text-sm text-coastal/60">
+                Independently certified. Committed to cleaner seas.
+              </p>
+            </div>
+            <p className="hidden text-xs text-coastal/35 sm:block">
+              Select a badge to view details
+            </p>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-3">
+            {credentials.map((credential) => (
+              <a
+                key={credential.name}
+                href={credential.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${credential.name} details (opens in a new tab)`}
+                className="group flex min-h-28 items-center gap-4 rounded-xl border border-coastal/10 bg-coastal/[0.04] px-4 py-3.5 transition duration-300 hover:-translate-y-0.5 hover:border-aqua/35 hover:bg-coastal/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua/70 focus-visible:ring-offset-2 focus-visible:ring-offset-sea-950"
+              >
+                <span className="flex h-24 w-24 shrink-0 items-center justify-center rounded-lg bg-white p-2 shadow-sm">
+                  <Image
+                    src={credential.image}
+                    alt={`${credential.name} badge`}
+                    width={96}
+                    height={96}
+                    className={`${credential.imageClassName} object-contain`}
+                  />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-sm font-medium text-coastal transition-colors group-hover:text-aqua">
+                    {credential.name}
+                    <span aria-hidden="true" className="ml-1.5 inline-block transition-transform group-hover:translate-x-0.5">
+                      ↗
+                    </span>
+                  </span>
+                  <span className="mt-1 block text-xs leading-relaxed text-coastal/50">
+                    {credential.detail}
+                  </span>
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-coastal/10 pt-7 text-xs text-coastal/40">

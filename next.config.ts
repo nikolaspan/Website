@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   // Dev-only: allow loading the dev server (and its HMR websocket) from these
   // LAN origins, e.g. when testing on a phone. Ignored by `next build`/export.
-  allowedDevOrigins: ["192.168.1.14"],
+  allowedDevOrigins: ["192.168.1.14","192.168.1.194"],
 };
 
 export default nextConfig;

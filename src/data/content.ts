@@ -119,6 +119,12 @@ export const partnerGroups: PartnerGroup[] = [
         logo: "/brand/partners/grivalia_hospitality_logo_e1665468820635_500x500_enhanced.png",
         url: "https://grivaliahospitality.com/",
       },
+      {
+        name: "AMANGATI",
+        role: "Luxury yacht",
+        logo: "/brand/partners/amangati.png",
+        url: "https://www.amanatsea.com/",
+      },
     ],
   },
   {

@@ -25,6 +25,15 @@ export type PressItem = {
 // ---- Headlines / "In the press" -----------------------------------------
 export const pressItems: PressItem[] = [
   {
+    title: "SAIL-E advances on-demand sea transportation",
+    source: "StartUs Insights",
+    sourceType: "Site",
+    url: "https://www.startus-insights.com/innovators-guide/transportation-trends/",
+    image: "/press/start.png",
+    excerpt:
+      "StartUs Insights recognizes SAIL-E for bringing real-time bookings, fleet availability, and transparent pricing to coastal and island travel.",
+  },
+  {
     title: "Two friends built a Greek platform for on-demand sea travel",
     source: "It's Possible",
     sourceType: "Site",
