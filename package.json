@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "next": "16.3.3",
+    "next": "16.3.4",
     "ogl": "1.0.11",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -20,16 +20,13 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.4",
-    "eslint-config-next": "16.3.3",
+    "eslint-config-next": "16.3.4",
     "tailwindcss": "4.3.1",
     "typescript": "5.9.3"
   },
   "overrides": {
     "postcss": "8.5.23",
-    "js-yaml": "4.3.1",
-    "nanoid": "3.3.18",
-    "next": {
-      "sharp": "0.35.3"
-    }
+    "js-yaml": "4.3.2",
+    "nanoid": "3.3.18"
   }
 }
